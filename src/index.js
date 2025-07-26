@@ -18,7 +18,7 @@ const premiumrouter=require("./routes/premiumrouter")
 
 const server = http.createServer(app);
 app.use(cors({
-  origin:'http://localhost:5173',
+  origin: 'https://codelikho.vercel.app',
   credentials:true
 }))
 
@@ -27,7 +27,7 @@ app.use(cors({
 const { Server } = require('socket.io');
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin:  'https://codelikho.vercel.app',
     methods: ['GET', 'POST'],
     credentials: true
   }
