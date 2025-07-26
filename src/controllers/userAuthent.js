@@ -38,10 +38,12 @@ const register= async (req,res)=>{
     res.status(201).json({user:reply,
       message:"Registerd Successfully! succesfully!"})
   }
- catch (err) {
-  console.error("Login Error:", err); // 👈 See this in Render logs
-  res.status(500).json({ message: "Internal Server Error" });
-}
+  catch(err){
+    console.log(err)
+    res.status(500).json({message:"Error Occured",
+      error:err
+    });
+  }
 }
 
 const login=async(req,res)=>{
@@ -87,8 +89,10 @@ const login=async(req,res)=>{
     res.cookie("token",token,{maxAge:60*60*1000});
     res.status(200).json({user:reply,message:"Logged In succesfully!"})
   }
-  catch(err){
-    res.status(500).json({message:" Interval Server Error "});
+    catch(err){
+    res.status(500).json({message:" Interval Server Error ",
+      error:err
+    });
 
   }
 }
