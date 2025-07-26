@@ -132,6 +132,7 @@ const premiumdetails = async (req, res) => {
     let data = await Premium.findOne({ user: userid }).populate("courses");
 
     // 3. If not found, create a new one with isPremium=false
+      // If not found, create one
     if (!data) {
       data = await Premium.create({
         user: userid,
