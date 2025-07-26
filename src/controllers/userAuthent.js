@@ -41,6 +41,7 @@ const register= async (req,res)=>{
  catch (err) {
   console.error("Login error:", err); // 👈 This is critical
   res.status(500).json({ message: "Internal Server Error" });
+  console.log(err)
 }
 }
 
