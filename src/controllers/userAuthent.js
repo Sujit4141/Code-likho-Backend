@@ -35,7 +35,12 @@ const register= async (req,res)=>{
 
    console.log("Login request body:", req.body);
    
-    res.cookie("token",token,{maxAge:60*60*1000});
+       res.cookie("token", token, {
+  httpOnly: true,           // Prevent JS from accessing it (secure)
+  secure: true,             // Required for HTTPS (Render is HTTPS)
+  sameSite: "None",         // Required for cross-origin cookies
+  maxAge: 60 * 60 * 1000,   // 1 hour
+});
     res.status(201).json({user:reply,
       message:"Registerd Successfully! succesfully!"})
   }
