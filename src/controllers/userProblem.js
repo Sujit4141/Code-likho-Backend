@@ -4,6 +4,10 @@ const User=require("../models/user");
 const Submission = require("../models/submission");
 
 const createProblem=async(req,res)=>{
+    if (!req.result || !req.result._id) {
+  return res.status(401).json({ message: "Unauthorized or missing user context" });
+}
+
     const {title,description,difficulty,tags,
   visibleTestCases,hiddenTestCases, startCode,referenceSolution,problemCreator}= req.body;
 
