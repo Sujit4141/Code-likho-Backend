@@ -33,15 +33,19 @@ const register= async (req,res)=>{
      role:user.role
    }
 
+   console.log("Login request body:", req.body);
    
     res.cookie("token",token,{maxAge:60*60*1000});
     res.status(201).json({user:reply,
       message:"Registerd Successfully! succesfully!"})
   }
  catch (err) {
+  
   console.error("Login error:", err); // 👈 This is critical
-  res.status(500).json({ message: "Internal Server Error" });
-  console.log(err)
+  res.status(500).json({ message: "Internal Server Error",
+    error:err
+   });
+  
 }
 }
 
