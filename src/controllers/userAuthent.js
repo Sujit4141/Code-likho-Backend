@@ -94,7 +94,7 @@ const login=async(req,res)=>{
   secure: true,             // Required for HTTPS (Render is HTTPS)
   sameSite: "None",         // Required for cross-origin cookies
   maxAge: 60 * 60 * 1000,   // 1 hour
-});dit add .Date
+});
     res.status(200).json({user:reply,message:"Logged In succesfully!"})
   }
     catch(err){
