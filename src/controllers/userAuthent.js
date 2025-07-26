@@ -38,12 +38,10 @@ const register= async (req,res)=>{
     res.status(201).json({user:reply,
       message:"Registerd Successfully! succesfully!"})
   }
-  catch(err){
-    console.log(err)
-    res.status(500).json({message:"Error Occured",
-      error:err
-    });
-  }
+ catch (err) {
+  console.error("Login error:", err); // 👈 This is critical
+  res.status(500).json({ message: "Internal Server Error" });
+}
 }
 
 const login=async(req,res)=>{
