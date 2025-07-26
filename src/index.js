@@ -17,6 +17,10 @@ const getvideotoken =require("./controllers/videocall")
 const premiumrouter=require("./routes/premiumrouter")
 
 const server = http.createServer(app);
+app.use(cors({
+  origin:'http://localhost:5173',
+  credentials:true
+}))
 
 //socket.io is setup kiye kya humlog ek normal http server banaye phir usko socket.io wale server se upgrade kr diye abb koi dikkat nhi hoga io ke andar mera abb socket wala server hai mtlb jo bhi server socket wala kaam hoga wo io se hoga !
 
@@ -33,10 +37,7 @@ const chatHandler = require('./utils/Socket');
 chatHandler(io);
 
 
-app.use(cors({
-  origin:'http://localhost:5173',
-  credentials:true
-}))
+
 
 app.use(express.json())
 app.use(cookieParser())
