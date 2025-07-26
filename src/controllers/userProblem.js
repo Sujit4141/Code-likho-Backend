@@ -9,6 +9,8 @@ const createProblem=async(req,res)=>{
 
   try{
 
+      console.log(req.body)
+
     
   
 
@@ -29,6 +31,7 @@ const createProblem=async(req,res)=>{
     expected_output:testcases.output
 
   }));
+      console.log(submissions)
 
   
 
