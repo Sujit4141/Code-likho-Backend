@@ -116,8 +116,7 @@ const premiumstatus = async (req, res) => {
 };
 
 
-const mongoose = require("mongoose");
-const Premium = require("../models/Premium"); // adjust path if needed
+
 
 const premiumdetails = async (req, res) => {
   try {
