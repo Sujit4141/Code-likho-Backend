@@ -116,6 +116,8 @@ const premiumstatus = async (req, res) => {
 };
 
 
+const mongoose = require("mongoose");
+const Premium = require("../models/Premium"); // adjust path if needed
 
 const premiumdetails = async (req, res) => {
   try {
@@ -126,27 +128,27 @@ const premiumdetails = async (req, res) => {
       return res.status(400).json({ message: "Invalid User ID format" });
     }
 
-    // 2. Find by USER reference (not premium record ID)
-    const data = await Premium.findOne({ user: userid }).populate('courses');
+    // 2. Try finding premium record for the user
+    let data = await Premium.findOne({ user: userid }).populate("courses");
 
-    // 3. Handle not found case properly
+    // 3. If not found, create a new one with isPremium=false
     if (!data) {
-      return res.status(200).json({ 
-        message: "You haven't purchased any premium courses",
+      data = await Premium.create({
+        user: userid,
         isPremium: false,
         courses: []
       });
     }
 
-    // 4. Successful response
+    // 4. Respond with full premium status
     res.status(200).json({
-      id:data._id,
+      id: data._id,
       isPremium: data.isPremium,
       courses: data.courses,
       purchasedDate: data.createdAt
     });
+
   } catch (err) {
-    // 5. Proper error handling
     console.error("Premium details error:", err);
     res.status(500).json({
       message: "Failed to fetch premium details",
@@ -154,5 +156,8 @@ const premiumdetails = async (req, res) => {
     });
   }
 };
+
+module.exports = premiumdetails;
+
 
 module.exports={premiumdetails,createPremiumRecord,premiumstatus}
