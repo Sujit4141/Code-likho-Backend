@@ -51,6 +51,9 @@ app.use("/goodies",GoodiesRouter)
 app.get('/agoratoken/:id',getvideotoken)
 
 app.use("/premium",premiumrouter)
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' })
+})
 
 const InitializeConnection=async()=>{
   try{
